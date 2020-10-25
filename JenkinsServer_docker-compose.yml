@@ -1,0 +1,22 @@
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/jenkins_home:/var/jenkins_home
+    networks:
+      - net
+  
+  ssh-server:
+    container_name: centos7
+    image: centos7
+    build:
+      context: centos7
+    networks:
+      - net
+
+networks:
+  net:
